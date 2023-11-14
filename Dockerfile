@@ -11,7 +11,7 @@ COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the .h5 file into the container at /app
-COPY model.h5 /app/
+COPY docu_classificator.h5 /app/
 
 # Copy the rest of the current directory contents into the container at /app
 COPY . /app
