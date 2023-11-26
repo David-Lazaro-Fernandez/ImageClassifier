@@ -1,12 +1,19 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import JSONResponse
+from getpass import getpass
+import os
+from dotenv import load_dotenv
 import shutil
 import tensorflow as tf
 from PIL import Image
 import numpy as np
+import openai
+import sys
 
-# Cargar el modelo desde el archivo .h5
+load_dotenv()
+
 model = tf.keras.models.load_model('doc_classificator.h5')
+api_key = os.getenv("OPENAI_API_KEY", None)
 
 # Función para preprocesar la imagen
 def preprocess_image(image_path):
@@ -45,3 +52,13 @@ async def predict(file: UploadFile = File(...)):
         print(e)
         # Maneja cualquier excepción que pueda ocurrir durante la predicción
         raise HTTPException(status_code=500, detail="Error during prediction")
+
+# for res in openai.completions.create(
+#     model="text-davinci-003",
+#     prompt="Sabes que es el SAT en Mexico?",
+#     temperature=0.5,
+#     max_tokens=120,
+#     stream=True,
+# ):
+#     sys.stdout.write(res.choices[0].text)
+#     sys.stdout.flush()
