@@ -9,11 +9,13 @@ from PIL import Image
 import numpy as np
 import openai
 import sys
+import json
 
 load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY", None)
 
 model = tf.keras.models.load_model('doc_classificator.h5')
-api_key = os.getenv("OPENAI_API_KEY", None)
+
 
 # Función para preprocesar la imagen
 def preprocess_image(image_path):
@@ -53,12 +55,3 @@ async def predict(file: UploadFile = File(...)):
         # Maneja cualquier excepción que pueda ocurrir durante la predicción
         raise HTTPException(status_code=500, detail="Error during prediction")
 
-# for res in openai.completions.create(
-#     model="text-davinci-003",
-#     prompt="Sabes que es el SAT en Mexico?",
-#     temperature=0.5,
-#     max_tokens=120,
-#     stream=True,
-# ):
-#     sys.stdout.write(res.choices[0].text)
-#     sys.stdout.flush()

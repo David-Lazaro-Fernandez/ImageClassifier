@@ -1,0 +1,63 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "get_todo",
+            "description": "Gets the current todo list of the user",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "description": "The name of the user, e.g David"
+                    }
+                },
+                "required": [
+                    "user"
+                ]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_user_bills",
+            "description": "Gets and Downloads the received bills of the user",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "string",
+                        "description": "The complete name of the user, e.g. David Lazaro Fernandez"
+                    },
+                    "type_of_bill": {
+                        "type": "string",
+                        "description": "Type of bill (e.g., 'Factura emitida' or 'Factura recibida')"
+                    }
+                },
+                "required": [
+                    "type_of_bill"
+                ]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_all_bills",
+            "description": "Gets and Downloads all the received bills of all users",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "type_of_bill": {
+                        "type": "string",
+                        "description": "Type of bill (e.g., 'Factura emitida' or 'Factura recibida')"
+                    }
+                },
+                "required": [
+                    "type_of_invoice"
+                ]
+            }
+        }
+    }
+]
